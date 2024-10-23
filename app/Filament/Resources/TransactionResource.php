@@ -45,11 +45,15 @@ class TransactionResource extends Resource
                         ->required()
                         ->options(TransactionTypeEnum::class),
                     Forms\Components\TextInput::make("amount")
+                        ->label("Amount")
+                        ->placeholder("Amount")
                         ->required()
                         ->numeric(),
                     Forms\Components\Textarea::make("description")
+                        ->placeholder("Description")
                         ->hint("Optional"),
                     Forms\Components\DatePicker::make("date")
+                        ->default(Carbon::now())
                         ->required(),
                 ])
             ]);
