@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Widgets\TransactionPerCategoryBarChart;
+use App\Filament\Widgets\TransactionPerTypeChart;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
@@ -25,7 +26,8 @@ class AppDashboard extends BaseDashboard
     public function getWidgets(): array
     {
         return [
-            TransactionPerCategoryBarChart::class
+            TransactionPerCategoryBarChart::class,
+            TransactionPerTypeChart::class
         ];
     }
 
