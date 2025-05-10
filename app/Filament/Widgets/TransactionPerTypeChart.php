@@ -14,22 +14,24 @@ use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
 class TransactionPerTypeChart extends ApexChartWidget
 {
     use InteractsWithPageFilters;
+
     protected static ?string $chartId = 'transactionPerTypeChart';
 
     protected static ?string $heading = 'Transaction Per Type';
 
     protected function getOptions(): array
     {
-        $startDate = ! is_null($this->filters['startDate'] ?? null) ?
+        $startDate = !is_null($this->filters['startDate'] ?? null) ?
             Carbon::parse($this->filters['startDate']) :
             null;
 
-        $endDate = ! is_null($this->filters['endDate'] ?? null) ?
+        $endDate = !is_null($this->filters['endDate'] ?? null) ?
             Carbon::parse($this->filters['endDate']) :
             now();
 
-        $totalIncome = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::INCOME->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
-        $totalExpense = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::EXPENSE->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
+        $totalIncome = Transaction::where('user_id', auth()->user()->id)->where('transaction_type', TransactionTypeEnum::INCOME->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
+
+        $totalExpense = Transaction::where('user_id', auth()->user()->id)->where('transaction_type', TransactionTypeEnum::EXPENSE->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
 
         $categories = [
             'Income',
@@ -98,7 +100,8 @@ class TransactionPerTypeChart extends ApexChartWidget
             },
         }
     }
-    JS);
+    JS
+        );
     }
 
 }
