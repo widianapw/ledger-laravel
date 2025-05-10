@@ -28,8 +28,8 @@ class TransactionPerTypeChart extends ApexChartWidget
             Carbon::parse($this->filters['endDate']) :
             now();
 
-        $totalIncome = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::INCOME)->whereBetween('date', [$startDate, $endDate])->sum('amount');
-        $totalExpense = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::EXPENSE)->whereBetween('date', [$startDate, $endDate])->sum('amount');
+        $totalIncome = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::INCOME->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
+        $totalExpense = Transaction::where('user_id', auth()->user()->id)->where('type', TransactionTypeEnum::EXPENSE->value)->whereBetween('date', [$startDate, $endDate])->sum('amount');
 
         $categories = [
             'Income',
