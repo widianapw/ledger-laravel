@@ -15,6 +15,7 @@ class TransactionPerTypeChart extends ApexChartWidget
 {
     use InteractsWithPageFilters;
 
+
     protected static ?string $chartId = 'transactionPerTypeChart';
 
     protected static ?string $heading = 'Transaction Per Type';
